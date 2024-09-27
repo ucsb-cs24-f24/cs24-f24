@@ -2,13 +2,14 @@
 layout: lab
 num: lab03
 ready: true
-desc: "Implementing a linked list- OOP style"
-assigned: 2024-07-15 9:00:00.00-8
-due: 2024-07-24 23:59:00.00-8
+desc: "Implementing a Linked List, OOP Style"
+assigned: 2024-10-21 9:00:00.00-7
+due: 2024-10-30 23:59:00.00-7
+published: false
 ---
 
 ## Collaboration policy
-This lab may be done with a partner or solo. 
+This lab may be done with a partner or solo.
 
 
 # Goals for this lab
@@ -20,8 +21,8 @@ By the time you have completed this lab, you should be able to
 * Implement functions that process linked lists
 
 
-# Academic Honesty 
-All work submitted for this lab should be your own and your partners. If you are using any hints from a previous offering of this course that was posted publicly by a CS24 instructor, you must cite your source. 
+# Academic Honesty
+All work submitted for this lab should be your own and your partners. If you are using any hints from a previous offering of this course that was posted publicly by a CS24 instructor, you must cite your source.
 
 # Step by Step Instructions
 
@@ -105,12 +106,12 @@ int main()
   list->next = new Node;
   list->next->info = 20;
   list->next->next = 0;
-  
+
   Node* temp = list;
   list = new Node;
   list->info = 5;
   list->next = temp;
-  
+
   for (Node* n = list; n != 0; n = n->next) {
     std::cout << "\nThis node is at address: " << n << std::endl;
     std::cout << "It holds a number: " << n->info << std::endl;
@@ -152,18 +153,18 @@ int main()
   list->next = new Node;
   list->next->info = 20;
   list->next->next = 0;
-  
+
   Node* temp = list;
   list = new Node;
   list->info = 5;
   list->next = temp;
-  
+
   Node* n = list;
   while (n) {
     std::cout << "\nThis node is at address: " << n << std::endl;
     std::cout << "It holds a number: " << n->info << std::endl;
     std::cout << "Moving to the next node whose address is " << n->next << "..." << std::endl;
-    
+
     n = n->next;
   }
 }
@@ -185,7 +186,7 @@ int main()
   list->next = new Node;
   list->next->info = 20;
   list->next->next = 0;
-  
+
   delete list->next; // Why we free list->next firstly?
   delete list;
   list = 0; // Can we put this line before delete line?
@@ -203,7 +204,7 @@ Now, look at `intlist.cpp`. The functions that you need to implement are marked 
 
 An application file would create `IntList` objects and use them to solve problems. For this lab, we have two application files, both of which are testing programs - `testlist.cpp` and `testrest.cpp`. First, look `testlist.cpp`. Two `IntList` objects are created; then, numbers read from the command line are appended to one of the lists; and finally, the methods are tested for each list.
 
-You can use the provided `Makefile` to help you complile the program. 
+You can use the provided `Makefile` to help you complile the program.
 
 ## Step 4: Implement linked list functions
 
@@ -242,7 +243,7 @@ Empty list 2:
    List 2 after insertFirst(3), then insertFirst(1):
    []
 ```
-See that `append`, `print` and `count` all work. But the others need to be fixed. 
+See that `append`, `print` and `count` all work. But the others need to be fixed.
 
 Use an editor (e.g., emacs, vim, or VS Code) to make the following changes to `intlist.cpp` - do not change any of the other files.
 
@@ -253,7 +254,7 @@ Use an editor (e.g., emacs, vim, or VS Code) to make the following changes to `i
 * Then implement the `contains` method, save again and test again.
 * Continue with the other three functions in the same way: implement and test one at a time. Don't implement the copy constructor, destructor, and assignment operator yet.
 
-Push your code to github often. 
+Push your code to github often.
 
 Here are correct results for the same sample data as above:
 
@@ -281,7 +282,7 @@ Empty list 2:
    [1 3]
 ```
 
-Ask yourself: With just the automatic copy constructor and assignment operator, won't copies be shallow? 
+Ask yourself: With just the automatic copy constructor and assignment operator, won't copies be shallow?
 
 You will fix this problem by overloading the copy constructor and assignment operator. You should also implement the destructor. However, before you begin, examine `testrest.cpp`. This file tests the functions your are about to implement.
 
@@ -301,15 +302,15 @@ $ valgrind --leak-check=full ./testrest 1
 ==5414== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
 ==5414== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info
 ==5414== Command: ./testrest 1
-==5414== 
+==5414==
 PASSED copy constructor tests
-==5414== 
+==5414==
 ==5414== HEAP SUMMARY:
 ==5414==     in use at exit: 0 bytes in 0 blocks
 ==5414==   total heap usage: 17 allocs, 17 frees, 73,968 bytes allocated
-==5414== 
+==5414==
 ==5414== All heap blocks were freed -- no leaks are possible
-==5414== 
+==5414==
 ==5414== For counts of detected and suppressed errors, rerun with: -v
 ==5414== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 ```
@@ -317,7 +318,7 @@ PASSED copy constructor tests
 The error summary should show 0 errors as shown above. If you have memory leaks, `valgrind` will let you know.
 
 
-* Implement the destructor, compile and run <code>$ ./testrest 2</code>. 
+* Implement the destructor, compile and run <code>$ ./testrest 2</code>.
 You should see the following message:
 
 ```
@@ -341,6 +342,3 @@ Do beware that all parts must be working to earn any points at all from the Grad
 Each student must accomplish the following to earn full credit for this lab:
 
 * [100 points] `intlist.cpp` is saved, it has your name(s) in a comment at the top, it compiles and executes properly, and has been submitted with a score of 100/100 to the Gradescope system.
-
-
-

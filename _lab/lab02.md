@@ -3,8 +3,9 @@ layout: lab
 num: lab02
 ready: true
 desc: "Binary Search Tree"
-assigned: 2024-07-08 9:00:00.00-8
-due: 2024-07-17 23:59:00.00-8
+assigned: 2024-10-14 9:00:00.00-7
+due: 2024-10-23 23:59:00.00-7
+published: false
 ---
 
 
@@ -41,8 +42,8 @@ intbst.cpp  intbst.h  testbst.cpp
 A binary search tree class for integers, class IntBST is defined in intbst.h - please study this file for details of the class's features:
 
 - In Step 1, the constructor, destructor, clear and insert methods are to be implemented in intbst.cpp. Notice the insert method will return false to indicate an attempt to insert a duplicate value; otherwise it inserts the value and returns true.
-- In Step 2, you will implement the three print methods, pre-order, in-order, and post-order. 
-- In Step 3 you will implement the sum, count, contains, and getNodeFor methods. 
+- In Step 2, you will implement the three print methods, pre-order, in-order, and post-order.
+- In Step 3 you will implement the sum, count, contains, and getNodeFor methods.
 - In Step 4, you will implement the predecessor, successor, and remove methods. Step 4 will likely take you the most time BY FAR, so plan accordingly.
 The binary tree node structure is defined in the private area. The only instance variable is a node pointer, to point at the root node of the tree or at 0 if the tree is empty.
 Several utility functions are declared in the private area too. These functions can be recursive (by virtue of their Node* parameters), and the public methods can use them. See how the destructor might use clear, for example, and how the insert method would use the overloaded version of insert, each by passing the root pointer to the corresponding utility function. Also take note of the definition of getNodeFor, which will be useful in several of the functions you need to implement. Consider implementing this function immediately after the print functions, and think about where you can reuse it.
@@ -87,11 +88,11 @@ Empty BST:
 
 ```
 
-As you can see, none of the functions do anything at the moment, but you can start by implementing the constructor and insert methods since these will server as the foundation for future testing. 
-* Constructor: Even though the IntBST class may have many member functions associated with it, its only member variable is a Node* type called root. 
+As you can see, none of the functions do anything at the moment, but you can start by implementing the constructor and insert methods since these will server as the foundation for future testing.
+* Constructor: Even though the IntBST class may have many member functions associated with it, its only member variable is a Node* type called root.
 * Insert: Think about the properties of a binary search tree and traverse the tree accordingly. Note there is a private helper function for insert declared in intbst.h
 
-Next, the destructor function, which uses a helper function called clear. 
+Next, the destructor function, which uses a helper function called clear.
 * Clear: this method should remove all nodes in the binary search tree without creating memory leaks.
 * Destructor: When the object's scope ends, the destructor should take care of any memory allocation during its lifetime.
 
@@ -200,7 +201,4 @@ In a file named test_intbst.cpp, include code to test all the functions that you
 
 # Step 6: Submit your revised intbst.cpp, test_intbst.cpp and intbst.h
 
-You are allowed to modify intbst.h, though you should not need to, so submit both intbst.cpp and intbst.h to Gradescope for a grade out of 100. 
-
-
-
+You are allowed to modify intbst.h, though you should not need to, so submit both intbst.cpp and intbst.h to Gradescope for a grade out of 100.

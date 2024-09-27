@@ -3,13 +3,14 @@ layout: lab
 num: lab01
 ready: true
 desc: "Objective Cars"
-assigned: 2024-07-01 9:00:00.00-8
-due: 2024-07-10 23:59:00.00-8
+assigned: 2024-10-07 9:00:00.00-7
+due: 2024-10-16 23:59:00.00-7
+published: false
 ---
 
 # Collaboration policy
 
-This lab may be done solo 
+This lab may be done solo
 
 # Step by Step Instructions
 
@@ -55,7 +56,7 @@ pwd
 ls
 ```
 
-Then, as a reminder, while in your `~/cs24/lab01-YOUR-GITHUB-ID` directory (remember that `~` stands for your home directory), use `ls -a` to see that while the directory 
+Then, as a reminder, while in your `~/cs24/lab01-YOUR-GITHUB-ID` directory (remember that `~` stands for your home directory), use `ls -a` to see that while the directory
 may appear empty, there is a hidden folder called `.git` that marks this folder as a git repository (or repo for short):
 
 ```
@@ -70,7 +71,7 @@ Every git repo can have multiple *branches* of code; this is useful on  projects
 different versions of the code to live side-by-side in a repository, and then be merged together at a later stage.
 
 * Courses that involve group work (such as CMPSC 148 and/or CMPSC 156) may cover the use of git with multiple branches.
-* However, in this course, to keep things simple, **we'll typically stick to just one branch** 
+* However, in this course, to keep things simple, **we'll typically stick to just one branch**
 
 This single branch is sometimes called the *default branch*.
 * Prior to October 1, 2020, the usual name for that branch was `master`.
@@ -104,12 +105,12 @@ The `-v` here stands for `verbose`, and it means that the command will give lots
 $ git remote -v
 origin	git@github.com:{{site.class_org.name}}/lab01-YOUR-GITHUB-ID.git (fetch)
 origin	git@github.com:{{site.class_org.name}}/lab01-YOUR-GITHUB-ID.git (push)
-$ 
+$
 ```
 
 Explanation:
-* The word *remote* refers here to a Git repo that lives on some other computer; in this case, a GitHub.com server. 
-* The output above shows that you have one *remote* called `origin` and it shows the URL associated with that name `origin`.  
+* The word *remote* refers here to a Git repo that lives on some other computer; in this case, a GitHub.com server.
+* The output above shows that you have one *remote* called `origin` and it shows the URL associated with that name `origin`.
 * By convention, the name `origin` is used for the GitHub repo from which you cloned the current repo, i.e. the one that came after `git clone` in a previous step.
 
 What we are doing to do next is add a second remote, called `starter`.  From this remote, you'll be able to pull in some starter code; your lab solution will involve
@@ -124,7 +125,7 @@ To add a remote for this repo, we'll use the ssh url, like this:
 git remote add starter git@github.com:{{site.class_org.name}}/STARTER-lab01.git
 ```
 
-To see if it worked, you can type the `git remote -v` command again. Output should look like this (with YOUR-GITHUB-ID replaced by your github id. 
+To see if it worked, you can type the `git remote -v` command again. Output should look like this (with YOUR-GITHUB-ID replaced by your github id.
 
 ```
 $ git remote -v
@@ -132,7 +133,7 @@ origin	git@github.com:{{site.class_org.name}}/lab01-YOUR-GITHUB-ID.git (fetch)
 origin	git@github.com:{{site.class_org.name}}/lab01-YOUR-GITHUB-ID.git (push)
 starter	git@github.com:{{site.class_org.name}}/STARTER-lab01.git (fetch)
 starter	git@github.com:{{site.class_org.name}}/STARTER-lab01.git (push)
-$ 
+$
 ```
 
 Note that if the URLs are wrong for either the `origin` or the `starter` remotes, you can fix that by doing this command to remove a remote:
@@ -199,17 +200,17 @@ Your branch is up to date with 'origin/main'.
 nothing to commit, working tree clean
 ```
 
-With these files in place, you are ready to start coding. 
+With these files in place, you are ready to start coding.
 
 If you don't see those files, go back through the instructions and make sure you didn't miss a step. From here on after you complete each part of the assignment you should add, commit and push your changes to origin main. For instructions on how to do this, scroll down and read the section on "Commit your code to GitHub". If you still have trouble, ask your TA/ULAs for assistance.
 
-## Step 2: Understand the Code and finish car.cpp 
+## Step 2: Understand the Code and finish car.cpp
 
 In this lab you will create a comprehensive `Car` class with
-* descriptive member variables, 
-* constructor, 
-* copy constructor, 
-* destructor, 
+* descriptive member variables,
+* constructor,
+* copy constructor,
+* destructor,
 * overloaded assignment operators, and
 * commonly used methods that manipulate member variables
 
@@ -224,10 +225,10 @@ DoorKind  backseatDoors;
 uint8_t  seatCount;
 ```
 
-The functionalities of these variables can easily be inferred from their names. The `manufacturer` and `model` are of the type `string`, e.g. `manufacturer = "Audi\0"` and `model = "R8\0"`, which shall be dynamically managed. `zeroToSixtyNs` is the time taken to accelerate from 0 to 60 mph. There are also `headonDragCoeff`, `horsepower`, and `seatCount`. The `backseatDoors` is an enumeration whose declaration is in `doors.hpp`. It can take one of the four values: 
-1. `None = 0`, 
-2. `Hinge = 1`, 
-3. `GullWing = 2`, 
+The functionalities of these variables can easily be inferred from their names. The `manufacturer` and `model` are of the type `string`, e.g. `manufacturer = "Audi\0"` and `model = "R8\0"`, which shall be dynamically managed. `zeroToSixtyNs` is the time taken to accelerate from 0 to 60 mph. There are also `headonDragCoeff`, `horsepower`, and `seatCount`. The `backseatDoors` is an enumeration whose declaration is in `doors.hpp`. It can take one of the four values:
+1. `None = 0`,
+2. `Hinge = 1`,
+3. `GullWing = 2`,
 4. `Sliding = 3`
 
 The descriptions of the functionalities of the public methods are listed below:
@@ -266,10 +267,9 @@ The descriptions of the functionalities of the public methods are listed below:
 
 ## Step 3: Test Your Code and Upload to Gradescope
 
-The Autograder will use some test cases to check if your implementations are correct. In order to verify them, you’ll need to write your own test code, which can be a ‘main’ function to print out the results, before the submission. Then, write a Makefile to link all dependencies to make and run your test. 
-The lab assignment “{{page.num}}” should appear in your Gradescope dashboard in CS 24. If you haven’t submitted anything for this assignment yet, Gradescope will prompt you to upload your files. For this lab, you will only need to upload your modified file (i.e. `car.cpp`). 
+The Autograder will use some test cases to check if your implementations are correct. In order to verify them, you’ll need to write your own test code, which can be a ‘main’ function to print out the results, before the submission. Then, write a Makefile to link all dependencies to make and run your test.
+The lab assignment “{{page.num}}” should appear in your Gradescope dashboard in CS 24. If you haven’t submitted anything for this assignment yet, Gradescope will prompt you to upload your files. For this lab, you will only need to upload your modified file (i.e. `car.cpp`).
 If you already submitted something on Gradescope, it will take you to their “Autograder Results” page. There is a “Resubmit” button on the bottom right that will allow you to update the files for your submission.
 For this lab, if everything is correct, you’ll see a successful submission passing all of the Autograder tests.
 
 **Remember to check if you can see the files uploaded correctly in Gradescope.**
-

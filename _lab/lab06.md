@@ -1,9 +1,10 @@
 ---
 num: lab06
 ready: true
-desc: "Application of data structures to a movie dataset"
-assigned: 2024-08-05 9:00:00.00-8
-due: 2024-08-14 23:59:59.00-8
+desc: "Application of Data Structures to a Movie Dataset"
+assigned: 2024-11-11 9:00:00.00-8
+due: 2024-11-20 23:59:59.00-8
+published: false
 ---
 
 # Collaboration policy
@@ -11,9 +12,9 @@ This assignment may be completed in pairs using the pair-programming style of de
 
 # Introduction
 
-Please read the entire writeup before beginning the lab. In particular, take a look at part 3a to understand your requirements for a full score before attempting to implement a solution. You are graded on the running time efficiency of your solution. 
+Please read the entire writeup before beginning the lab. In particular, take a look at part 3a to understand your requirements for a full score before attempting to implement a solution. You are graded on the running time efficiency of your solution.
 
-In this assignment, you will 
+In this assignment, you will
 * Use a container data structure from the C++ Standard Template Library (STL) where possible and/or write your own data structure to store and query data.
 * Analyze the time and space complexity of your algorithms.
 
@@ -32,7 +33,7 @@ In this assignment, you will
 
 ### GitHub repository
 
-Refer to lab01 for instructions on how to set up a GitHub repository and 
+Refer to lab01 for instructions on how to set up a GitHub repository and
 pull the starter code for this lab.
 Obtain the starter code from this repo: <https://github.com/ucsb-cs24-w24/STARTER-lab06>
 
@@ -46,7 +47,7 @@ Obtain the starter code from this repo: <https://github.com/ucsb-cs24-w24/STARTE
 * `input_100_ordered.csv`
 * `input_100_random.csv`
 * `input_1000_ordered.csv`
-* `input_1000_random.csv` 
+* `input_1000_random.csv`
 * `input_76920_ordered.csv`
 * `input_76920_random.csv`
 * `prefix_small.txt`
@@ -105,9 +106,9 @@ four rooms,6.5
 ace ventura: when nature calls,6.1
 money train,5.4
 ```
- 
+
 ## Files to complete
-* `movies.cpp, movies.h`: these files should contain any abstractions that you need to define. 
+* `movies.cpp, movies.h`: these files should contain any abstractions that you need to define.
 	* We strongly discourage implementing any data structure available in the C++ STL from scratch. However, you are encouraged to think creatively about improving the running time efficiency of your solution and implement your own data structure if those provided in the STL are insufficient to meet your needs.
 * `main.cpp`: this file should read in the movies from input files and produce the expected output.
 * (Optional) `utilities.h` and `utilities.cpp`: you can place other helper functions, structs, and classes in these files.
@@ -115,7 +116,7 @@ money train,5.4
 ## Problem statement
 This assignment has three parts. You should **separate your algorithm for part 1 from your algorithm for part 2** because in part 3, you need to analyze the running time complexity of your solution to **part 2 only**.
 * In part 1, your task is to print all movie names and ratings (from the CSV file) in alphabetical order of movie name.
-* In part 2, you are given `m` prefixes of movie names. Your task is to find the movies whose names start with each prefix and find the highest-rated movie for each prefix. 
+* In part 2, you are given `m` prefixes of movie names. Your task is to find the movies whose names start with each prefix and find the highest-rated movie for each prefix.
 * In part 3, you will analyze the time and space complexity of your solution for part 2.
 
 ## Command-line arguments
@@ -124,7 +125,7 @@ This assignment has three parts. You should **separate your algorithm for part 1
 ```
 
 * `movieFilename` represents the input file containing movies and ratings (as described before).
-* `prefixFilename` is an optional parameter which is the name of a .txt file that contains a list of prefixes, see `prefix_medium.txt` as an example. 
+* `prefixFilename` is an optional parameter which is the name of a .txt file that contains a list of prefixes, see `prefix_medium.txt` as an example.
 	* There may be up to `m` such prefixes in the file.
     * Prefixes may include whitespace, see `prefix_medium.txt` for examples. Each line in the file corresponds to exactly one prefix.
 
@@ -134,7 +135,7 @@ Your program should print out all the movies in **alphabetical order of movie na
 
 **Example with no prefixes**
 ```
-./runMovies input_20_random.csv 
+./runMovies input_20_random.csv
 ```
 This should produce the output
 ```
@@ -171,7 +172,7 @@ Then for each prefix, your program should:
 You may use additional data structures from the C++ STL to help you solve this part of the assignment, or you may write your own structure.
 
 ### Part 2a: All movies starting with a prefix
-First, for each prefix, your program should print out all the movies whose names start with that prefix in **decreasing order of rating**. If multiple movies have the same rating, print them in alphabetical order of movie name. For example, print `the american president, 6.5` before `the confessional, 6.5`. If no movie names start with that prefix, then print 
+First, for each prefix, your program should print out all the movies whose names start with that prefix in **decreasing order of rating**. If multiple movies have the same rating, print them in alphabetical order of movie name. For example, print `the american president, 6.5` before `the confessional, 6.5`. If no movie names start with that prefix, then print
 ```
 No movies found with prefix <prefix_value>
 ```
@@ -267,7 +268,7 @@ Best movie with prefix t is: the usual suspects with rating 8.1
 ```
 
 Note that:
-1. Best movies with a certain prefix should be printed at the **END** of the output. 
+1. Best movies with a certain prefix should be printed at the **END** of the output.
 2. There will **NOT** be empty lines after printing out "No movies found with prefix <prefix_value>".
 ```
 No movies found with prefix xyz
@@ -309,43 +310,43 @@ Assume that
 
 
 ### Part 3a: Analyze time complexity
-Analyze the worst-case Big-O time complexity of your algorithm from part 2 of the assignment. You may assume that 
+Analyze the worst-case Big-O time complexity of your algorithm from part 2 of the assignment. You may assume that
 * all `n` movies are already stored in your data structure.
 * all `m` prefixes are already stored in an array.
 
-First, provide the time complexity analysis as a **commented block** right after your `main()` function in `main.cpp`. Note that 
+First, provide the time complexity analysis as a **commented block** right after your `main()` function in `main.cpp`. Note that
 
 * select the parameters that could affect the running time complexity of your algorithm among `n`, `m`, `k`, and `l`.
-* express your final Big-O running time in terms of the relevant parameters. 
-* your final answer will depend on your data structure and algorithm choices. 
+* express your final Big-O running time in terms of the relevant parameters.
+* your final answer will depend on your data structure and algorithm choices.
 
-Second, report on **specific running times achieved by your solution** on *each* random input file: `input_20_random.csv`, `input_100_random.csv`, `input_1000_random.csv`, and `input_76920_random.csv`, using `prefix_large.txt` as the second parameter. 
+Second, report on **specific running times achieved by your solution** on *each* random input file: `input_20_random.csv`, `input_100_random.csv`, `input_1000_random.csv`, and `input_76920_random.csv`, using `prefix_large.txt` as the second parameter.
 
-. Write down the number of milliseconds it takes for your solution to run on each input. Only report on the randomized datasets. 
+. Write down the number of milliseconds it takes for your solution to run on each input. Only report on the randomized datasets.
 
 * Be sure to check that the trend in your proposed time complexity from (1) somewhat matches with trends in your runtimes from (2)
 
-You will be graded for the efficiency of your algorithms but also the clarity and correctness of your analysis. 
+You will be graded for the efficiency of your algorithms but also the clarity and correctness of your analysis.
 
 Here are runtime plots of three different types of solutions. These runtimes were gathered on the csil machines on the input files `input_76920_random.csv`, recording the running time to compute the result for the first `m` prefixes in `prefix_large.txt` to get each data point in the plot. If you want to get a proper runtime comparison, please run your code on csil first and submit it to the Gradescope. And the leaderboard will show the efficiency for grading.
 * **Full credit will be given to solutions with an efficiency similar to `Mystery Implementation #4`**
 
-* The students who achieve the top 5 runtimes will receive **extra credit**. And we will use Gradescope leaderboard to decide the top 5 runtime. 
+* The students who achieve the top 5 runtimes will receive **extra credit**. And we will use Gradescope leaderboard to decide the top 5 runtime.
 
 <img src="instruction_perf.jpg" alt="Part2" style="display:block; margin: 5px 10px 10px 10px;">
 
 
 ### Part 3b: Analyze space complexity
-Analyze the worst case Big-O space complexity of your algorithm from part 2 of the assignment. You may assume that 
+Analyze the worst case Big-O space complexity of your algorithm from part 2 of the assignment. You may assume that
 * all `n` movies are already stored in your data structure.
 * all `m` prefixes are already stored in an array.
 
-You must provide the space complexity analysis as a **commented block** under your time complexity analysis. Note that 
+You must provide the space complexity analysis as a **commented block** under your time complexity analysis. Note that
 * select the parameters that could affect the space complexity of your algorithm among `n`, `m`, `k`, and `l`.
-* express your final Big-O space complexity in terms of the relevant parameters. 
-* your final answer will depend on your data structure and algorithm choices. 
+* express your final Big-O space complexity in terms of the relevant parameters.
+* your final answer will depend on your data structure and algorithm choices.
 
-You will be graded for the efficiency of your algorithms but also the clarity and correctness of your analysis. However, we are not giving you a target Big-O space complexity. 
+You will be graded for the efficiency of your algorithms but also the clarity and correctness of your analysis. However, we are not giving you a target Big-O space complexity.
 
 ### Part 3c: Explore tradeoffs between time/space complexity
 Briefly state how you designed your algorithm from part 2 of the assignment for the task at hand. More specifically, answer this question:
@@ -370,9 +371,9 @@ You will be graded for the clarity and thoughtfulness of your analysis.
 ## Requirements
 For this programming assignment, you will have a lot of flexibility on your implementation (which just means we won't be providing a code framework for you to fill in). However, there are a few requirements that you need to keep in mind as you think about your solution:
 
-* You must make appropriate use of data structures from the STL where possible, and implement your own only when needed. For example, if you need a bst, just use the implementation provided in the STL instead of implementing it from scratch. 
+* You must make appropriate use of data structures from the STL where possible, and implement your own only when needed. For example, if you need a bst, just use the implementation provided in the STL instead of implementing it from scratch.
 * First, try to come up with a correct implementation, then think of how to optimize it.
 * Your code should be readable
-* Your classes should define clear interfaces and hide implementation details as much as possible. 
-* We **DO NOT** allow multi-threading in this lab. This time, we only focus on designing your own algorithms and improving them. 
+* Your classes should define clear interfaces and hide implementation details as much as possible.
+* We **DO NOT** allow multi-threading in this lab. This time, we only focus on designing your own algorithms and improving them.
 * You must include your space and time complexity analyses (part 3) in `main.cpp`, as a commented block under the `main()` function

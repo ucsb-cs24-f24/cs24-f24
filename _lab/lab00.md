@@ -2,9 +2,9 @@
 layout: lab
 num: lab00
 ready: true
-desc: "Getting started"
-assigned: 2024-06-25 9:00:00.00-7
-due: 2024-07-03 23:59:00.00-7
+desc: "Getting Started"
+assigned: 2024-10-02 9:00:00.00-7
+due: 2024-10-09 23:59:00.00-7
 ---
 
 
@@ -18,12 +18,12 @@ Your first lab for this week is an introduction to programming on CSIL and tools
 
 This lab will count towards 1% of your total lab grade. All other labs are weighed equally.
 
-This lab must be completed INDIVIDUALLY. 
- 
+This lab must be completed INDIVIDUALLY.
+
 
 # Get setup with the tools for this course
 
-## Check your CoE account 
+## Check your CoE account
 
 We encourage you to complete all programming assignments by logging in to the machines in the Computer Science labs, or to connect remotely. To do this you will need a **College of Engineering (CoE) account**.
 
@@ -34,7 +34,7 @@ Otherwise, check your email for an invitation from the college of Engineering He
 If you still don't have an account, use the links below to either request one or reset your password.
 
 * CoE account creation portal: <https://accounts.engr.ucsb.edu/create>
-* New Community Member info: 
+* New Community Member info:
 <https://ucsb-engr.atlassian.net/wiki/spaces/EPK/pages/575373516/New+UCSB+Community+Member+Information?src=search>
 * maintain portal (also password reset link with UCSBnetID): <https://accounts.engr.ucsb.edu/maintain/login>
 
@@ -49,7 +49,7 @@ To join this organization, you need to do three things.
 
 2. If you don't already have your @umail.ucsb.edu email address associated with your github.com account. go to "settings", add that email, and confirm that email address.
 
-3. Visit our [Github Sign Up Tool: https://ucsb-cs-github-linker.herokuapp.com/](https://ucsb-cs-github-linker.herokuapp.com/), login with your github.com account, click "Home", find the {{site.class_org.githublinker}} course, and click the "join course button".   That will automatically send you an invitation to join the course organization on github. 
+3. Visit our [Github Sign Up Tool: https://ucsb-cs-github-linker.herokuapp.com/](https://ucsb-cs-github-linker.herokuapp.com/), login with your github.com account, click "Home", find the {{site.class_org.githublinker}} course, and click the "join course button".   That will automatically send you an invitation to join the course organization on github.
 
 4. Accept the invitation that appears in your browser (from step 3) or log into your account on [www.github.com](https://github.com/) to accept the invitation.
 
@@ -59,7 +59,7 @@ We will use gradescope to grade all your homeworks, exams and lab/programming as
 
 Log into our class site on [www.gradescope.com](https://www.gradescope.com/): {{site.name}}    and navigate to the lab00 assignment
 
-# Implement and submit a simple C++ program 
+# Implement and submit a simple C++ program
 
 ## Download and install VSCode on your local computer
 
@@ -77,7 +77,7 @@ Open a **terminal window**, which will be the environment you use to write, comp
 
 If you are working on your laptop, whether Windows, Mac or Linux, the instructions below will tell you how to connect to `csil.cs.ucsb.edu`.
 
-If you are on a Mac laptop, open a terminal and type the 
+If you are on a Mac laptop, open a terminal and type the
 following ssh command to connect to one of the servers remotely
 
 ```
@@ -242,7 +242,7 @@ You will be given the option of directly uploading files from your local machine
 
 You should receive 50 points on this part of the assignment.
 
-Congratulations on completing the workflow for CS24 programming assignments using the tools that we will be using in this class i.e. gradescope and github. 
+Congratulations on completing the workflow for CS24 programming assignments using the tools that we will be using in this class i.e. gradescope and github.
 
 # Find a partner for lab01
 
@@ -263,13 +263,10 @@ For the assignments where pair programming is mentioned, it is optional. But her
 * There is also evidence in the scientific literature that it improves student learning, and helps you get better grades.
 * To learn more about pair programming, watch the following video (it takes less than 10 minutes): [http://bit.ly/pair-programming-video](http://bit.ly/pair-programming-video)
 
-## About pair programming in CS24 
+## About pair programming in CS24
 
-For CS24 in particular, **please read each lab carefully to learn how pair programming will work for that lab**. Some labs may require you to work by yourself, others may require you to work with a partner, and still others may allow you to do either. In addition, some labs may allow you to work with a prior partner, while others may not. 
+For CS24 in particular, **please read each lab carefully to learn how pair programming will work for that lab**. Some labs may require you to work by yourself, others may require you to work with a partner, and still others may allow you to do either. In addition, some labs may allow you to work with a prior partner, while others may not.
 
 For all labs, you MUST
 * add your partner on Gradescope when submitting your work EACH TIME you submit your file(s). After uploading your file(s) on Gradescope, there is a “Group Members” link at the bottom (or “Add Group Member” under “Groups”) where you can select the partner you are working with. Whoever uploaded the submission must make sure your partner is part of your Group. Click on “Group Members” -> “Add Member” and select your partner from the list.
 * write both your and your partner's names and PERM numbers on each file submitted to Gradescope.
-
-
-
