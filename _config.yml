@@ -5,30 +5,15 @@ plugins:
 remote_theme: ucsb-cs-course-repos/course-repo-jekyll-theme
 url: https://ucsb-cs24-f24.github.io/cs24-f24
 baseurl: "/cs24-f24"
-instructor: "Maryam Majedi"
 name: "CS24 Fall 2024"
 course: "CS24"
-course_title: "Problem Solving with Computers II"
 title: "UCSB CS24 F24"
 github_url: https://github.com/ucsb-cs24-f24/cs24-f24
-qtr: "F24"
 quarter: "Fall 2024"
-lecture_times: "TR 2:00p - 3:15p"
-lecture_location: "Girvetz 1004"
-lab_times: "W: 2p, 3p, 4p, 5p"
-tas: "Gyuwan Kim, Jason Li, Zhengyang Wang"
-ulas: "Dennis Kim, Siddhi Mundhra, Tianle Yu, Wong Zhao"
 class_org:
    name: ucsb-cs24-f24
    url: https://github.com/ucsb-cs24-f24
    githublinker: CS24 F24
-
-lect_repo: https://github.com/ucsb-cs24-f24/cs24-f24-lectures
-start_week: 1
-start_date: 2024-01-07
-num_weeks: 10
-
-instructor_url: https://ucsb-cs24.github.io/instructor
 
 kramdown:
    parse_block_html: true
@@ -52,9 +37,6 @@ collections:
   exam:
     output: true
     permalink: /exam/:path/
-  info:
-    output: true
-    permalink: /info/:path/
   lectures:
     output: true
     permalink: /lectures/:path/
@@ -65,12 +47,6 @@ defaults:
       path: "" # an empty string here means all files in the project
     values:
       layout: default
-  -
-    scope:
-      path: ""
-      type: hwk
-    values:
-      layout: hwk
   -
     scope:
       path: ""
@@ -101,11 +77,5 @@ defaults:
       type: lectures
     values:
       layout: lecture
-  -
-    scope:
-      path: "syllabus.md"
-      type: info
-    values:
-      layout: handout
 
 theme: jekyll-theme-cayman
