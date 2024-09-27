@@ -1,5 +1,5 @@
 ---
-title: "CS 24: Problem Solving with Computers-II , {{site.quarter}}"
+title: "CS 24: Problem Solving with Computers-II"
 ---
 
 
