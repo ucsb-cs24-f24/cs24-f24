@@ -108,6 +108,7 @@ Next, generate a private/public key pair and upload your public key to your GitH
 For this lab and all subsequent programming assignments, you should start by creating a repo in the `{{site.class_org.name}}` organization by following these steps:
 
 1. Navigate to your dashboard on <https://github.com>. At the top right, press the "Create New" button and select "New repository" as shown in the figure below.
+
 ![new-repo](new-repo.png){:height="500px"}
 
 2. Select `{{site.class_org.name}}` from the "Owner" dropdown.
@@ -117,10 +118,12 @@ For this lab and all subsequent programming assignments, you should start by cre
 4. Select the "Private" visibility option so that other students in the organization cannot view your code.
 
 5. Ensure that "Add a README file" and is unchecked and no license or `.gitignore` options are set. See the following example:
+
 ![create-repo](create-repo.png){:height="550px"}
 
 6. Clone the repo on your local machine: navigate to your repo on GitHub. If your repo is named `lab00_jgaucho`, then you have to go to to the link:
 `https://github.com/{{site.class_org.name}}/lab00_jgaucho`. Copy the address of your repo as shown in the figure below:
+
 ![repo-url](repo-url.png){:height="500px"}
 
 7. In your `cs24` directory, paste the address you just copied to the terminal following the `git clone` command. Here is an example:
