@@ -73,7 +73,7 @@ If you are working on your computer, whether Windows, Mac or Linux, the instruct
 If you are using a Mac, open a terminal and type the following ssh command to connect to one of the servers remotely:
 
 ```
-ssh yourCoEaccount@csil.cs.ucsb.edu
+$ ssh yourCoEaccount@csil.cs.ucsb.edu
 ```
 
 If you are using Windows, you will need to install the program [MobaXterm](https://mobaxterm.mobatek.net/).
@@ -81,7 +81,7 @@ If you are using Windows, you will need to install the program [MobaXterm](https
 If your ssh command is hanging, try using `cstl.cs.ucsb.edu` with the following command:
 
 ```
-ssh yourCoEaccount@cstl.cs.ucsb.edu
+$ ssh yourCoEaccount@cstl.cs.ucsb.edu
 ```
 
 ## Step 1a: Do some initial ONE-TIME git configurations
@@ -107,31 +107,31 @@ Next, generate a private/public key pair and upload your public key to your GitH
 
 For this lab and all subsequent programming assignments, you should start by creating a repo in the `{{site.class_org.name}}` organization by following these steps:
 
-1. Navigate to your dashboard on <https://github.com>. At the top right, press the "Create New" button and select "New repository" as shown in the figure below.
+* Navigate to your dashboard on <https://github.com>. At the top right, press the "Create New" button and select "New repository" as shown in the figure below.
 
 ![new-repo](new-repo.png){:height="500px"}
 
-2. Select `{{site.class_org.name}}` from the "Owner" dropdown.
+* Select `{{site.class_org.name}}` from the "Owner" dropdown.
 
-3. Type the name of your repo following the naming convention `lab00_<your-github-username>`. For example, if your GitHub username is `jgaucho`, you should name your repo as `lab00_jgaucho`. If you are working with a partner, include your partner's GitHub username in the name of the repo. e.g. `lab00_jgaucho_alily`
+* Type the name of your repo following the naming convention `lab00_<your-github-username>`. For example, if your GitHub username is `jgaucho`, you should name your repo as `lab00_jgaucho`. If you are working with a partner, include your partner's GitHub username in the name of the repo. e.g. `lab00_jgaucho_alily`
 
-4. Select the "Private" visibility option so that other students in the organization cannot view your code.
+* Select the "Private" visibility option so that other students in the organization cannot view your code.
 
-5. Ensure that "Add a README file" and is unchecked and no license or `.gitignore` options are set. See the following example:
+* Ensure that "Add a README file" and is unchecked and no license or `.gitignore` options are set. See the following example:
 
 ![create-repo](create-repo.png){:height="550px"}
 
-6. Clone the repo on your local machine: navigate to your repo on GitHub. If your repo is named `lab00_jgaucho`, then you have to go to to the link:
+* Clone the repo on your local machine: navigate to your repo on GitHub. If your repo is named `lab00_jgaucho`, then you have to go to to the link:
 `https://github.com/{{site.class_org.name}}/lab00_jgaucho`. Copy the address of your repo as shown in the figure below:
 
 ![repo-url](repo-url.png){:height="500px"}
 
-7. In your `cs24` directory, paste the address you just copied to the terminal following the `git clone` command. Here is an example:
+* In your `cs24` directory, paste the address you just copied to the terminal following the `git clone` command. Here is an example:
 ```
 $ git clone git@github.com:{{site.class_org.name}}/lab00_jgaucho.git
 ```
 
-8. The above command will create a new directory with the same name as your git repo. Change into that directory. For our example repo, we need to type
+* The above command will create a new directory with the same name as your git repo. Change into that directory. For our example repo, we need to type
 ```
 $ cd lab00_jgaucho
 ```
@@ -152,7 +152,7 @@ Useful information related to `vim` for a UNIX-based OS:
 
 * To customize your vim environment for a better coding experience with C/C++, copy this `.vimrc` file from the instructor folder to your home folder using the following command:
 ```
-cp /cs/faculty/dimirza/vim-configuration/example_dotvimrc/.vimrc ~/
+$ cp /cs/faculty/dimirza/vim-configuration/example_dotvimrc/.vimrc ~/
 ```
 * <a href="http://www.vim.org/about.php" target="_blank">About vim</a>
 * <a href="http://tnerual.eriogerg.free.fr/vimqrc.html" target="_blank">vim commands - a handy reference card</a>
@@ -191,13 +191,13 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 Now add the files that were modified since the last sync using `git add`
 ```
-git add hello.cpp
+$ git add hello.cpp
 ```
 
 OR
 
 ```
-git add .
+$ git add .
 ```
 
 Type `git status` again and you should see that the file appears in green. This means it is ready to be "saved" locally as a new version of your project.
