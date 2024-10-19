@@ -5,12 +5,11 @@ ready: true
 desc: "Implementing a Linked List, OOP Style"
 assigned: 2024-10-21 9:00:00.00-7
 due: 2024-10-30 23:59:00.00-7
-published: false
 ---
 
-## Collaboration policy
-This lab may be done with a partner or solo.
+# Collaboration policy
 
+This lab may be done solo or with a partner.
 
 # Goals for this lab
 
@@ -20,30 +19,28 @@ By the time you have completed this lab, you should be able to
 * Create, use, and manage memory for simple linked lists
 * Implement functions that process linked lists
 
-
 # Academic Honesty
-All work submitted for this lab should be your own and your partners. If you are using any hints from a previous offering of this course that was posted publicly by a CS24 instructor, you must cite your source.
 
-# Step by Step Instructions
+All work submitted for this lab should be your and your partner's own. If you are using any hints from a previous offering of this course that was posted publicly by a CS24 instructor, you must cite your source.
+
+# Step by step instructions
 
 ## Step 1: Create a directory and get files
 
+Follow the instructions from [lab01](../lab01) to set up your GitHub repo and get the starter code into your local repository.
 
-Follow the instructions from lab01 to set up your GitHub repo and get the starter code into your local repository.
+This is the link for the starter code for this lab:
 
-Below is the link for the starter code for this lab:
-<https://github.com/{{site.class_org.name}}/STARTER-{{page.num}}>
-
+* <https://github.com/{{site.class_org.name}}/STARTER-{{page.num}}>
 
 Once you have the starter code set up in your local repo, you should see a listing of several C++ files.
 
-Typing the list (ls) command should show you the following files in your current directory:
-
+Typing the list (`ls`) command should show you the following files in your current directory:
 
 ```
--bash-4.2$ ls
+$ ls
 intlist.cpp  intlist.h  Makefile  README.md  testlist.cpp  testrest.cpp
--bash-4.2$  make all
+$  make all
 g++ -c -g testlist.cpp
 g++ -c -g intlist.cpp
 g++ -g -o testlist testlist.o intlist.o
@@ -53,10 +50,9 @@ g++ -g -o testrest testrest.o intlist.o
 
 We will discuss these files in Step 3. But first some practice.
 
-## Step 2: Practice using linked structures (Optional)
+## Step 2: Practice using linked structures (optional)
 
-You can go to the website, "www.cpp.sh", to get practice with linked structures. (Or any other online cpp shell)
-Type or copy/paste the simple program shown below (in bold) at the code area in cpp.sh (replacing the original sample code):
+You can go to the website <https://www.cpp.sh> (or any other online C++ compiler) to get practice with linked structures. Type or copy/paste the simple program shown below at the code area in cpp.sh (replacing the original sample code):
 
 ```cpp
 struct Node {
@@ -65,39 +61,38 @@ struct Node {
 }
 ```
 
-The structure, 'Node', you just created, incorporates a way for an object of its type to point to another object of the same type - it is a self-referential structure. The idea is to point the `next` field of a Node to another Node, or in other words, the `next` field of a Node stores the memory address of the next Node. In this way, we can build lists of Nodes, with each Node pointing to the next one. We also maintain a separate pointer that points to the first node in the list - often we call this pointer the "list" because it is the way we can access the list's elements.
+The structure you just created, `Node`, incorporates a way for an object of its type to point to another object of the same type - it is a self-referential structure. The idea is to point the `next` field of a `Node` to another `Node`, or in other words, the `next` field of a Node stores the memory address of the next `Node`. In this way, we can build lists of `Node`s, with each `Node` pointing to the next one. We also maintain a separate pointer that points to the first node in the list - often we call this pointer the "list" because it is the way we can access the list's elements.
 
-But before we do all that, let's just make a Node object, set its fields, and display its contents:
+But before we do all that, let's just make a `Node` object, set its fields, and display its contents:
 
 ```cpp
 #include <iostream>
 
-struct Node {int info; Node *next;};
+struct Node { int info; Node *next; };
 
 int main()
 {
   Node item;
   item.info = 9;
-  item.next = 0;
+  item.next = nullptr;
   std::cout << "This node holds a number: " << item.info << "\n";
 }
 ```
 
-Now click on the "Run" button below the code area.
-You will see the output at the bottom.
+Now click on the "Run" button below the code area. You will see the output at the bottom.
 
 ```
 This node holds a number: 9
 ```
 
-The Node named `item` stores a 9 as its information, and its next field (a.k.a. "link") does not point to anything (the address 0 is reserved to mean "no address" in C++, and it is also the value of the symbolic constant `NULL` that is defined in cstdlib. It can also be called nil). Usually, a node with a null link is used to indicate the end of a linked list.
+The Node named `item` stores a 9 as its information, and its next field (a.k.a. "link") does not point to anything. A node with a null link is used to indicate the end of a linked list.
 
-Now, let's use the structure of a Node to build an actual linked list storing three integers. First, we will declare a pointer named `list` that points to the first node in the list (or null if the list is empty). We initialize this pointer to a dynamically allocated first node, using the C++ keyword new (which returns a pointer/memory address). The remaining steps will create two more nodes, store values in each node, and properly link them all together as a list.
+Now, let's use the structure of a Node to build an actual linked list storing three integers. First, we will declare a pointer named `list` that points to the first node in the list (or null if the list is empty). We initialize this pointer to a dynamically allocated first node, using the C++ keyword `new` (which returns a pointer/memory address). The remaining steps will create two more nodes, store values in each node, and properly link them all together as a list.
 
 ```cpp
 #include <iostream>
 
-struct Node {int info; Node *next;};
+struct Node { int info; Node *next; };
 
 int main()
 {
@@ -105,14 +100,14 @@ int main()
   list->info = 10;
   list->next = new Node;
   list->next->info = 20;
-  list->next->next = 0;
+  list->next->next = nullptr;
 
   Node* temp = list;
   list = new Node;
   list->info = 5;
   list->next = temp;
 
-  for (Node* n = list; n != 0; n = n->next) {
+  for (Node* n = list; n != nullptr; n = n->next) {
     std::cout << "\nThis node is at address: " << n << std::endl;
     std::cout << "It holds a number: " << n->info << std::endl;
     std::cout << "Moving to the next node whose address is " << n->next << "..." << std::endl;
@@ -139,12 +134,12 @@ Moving to the next node whose address is 0...
 
 The for loop continues as long as `n` is pointing to a node. At the end of each loop iteration, `n` is changed to point to the next node in the list. Study this loop, and be sure to understand it - discuss it with your partner to make sure you both understand it.
 
-As one more illustration, let's use a while loop to count the nodes in a list like this one. Make sure you understand the following loop too, in which the while loop condition is just the node pointer itself -- it becomes 0 at the end. ;-)
+As one more illustration, let's use a while loop to count the nodes in a list like this one. Make sure you understand the following loop too, in which the while loop condition is just the node pointer itself - it becomes `nullptr` at the end. ;-)
 
 ```cpp
 #include <iostream>
 
-struct Node {int info; Node *next;};
+struct Node { int info; Node *next; };
 
 int main()
 {
@@ -152,7 +147,7 @@ int main()
   list->info = 10;
   list->next = new Node;
   list->next->info = 20;
-  list->next->next = 0;
+  list->next->next = nullptr;
 
   Node* temp = list;
   list = new Node;
@@ -170,7 +165,7 @@ int main()
 }
 ```
 
-One big issue in the above program is memory leak.
+One big issue in the above program is memory leaks.
 
 Since we dynamically allocated the memory for three nodes, we should free that memory before exiting the program and proceeding to Step 3. Also, according to convention, we set the list pointer to null - it is now an empty list:
 
@@ -185,42 +180,40 @@ int main()
   list->info = 10;
   list->next = new Node;
   list->next->info = 20;
-  list->next->next = 0;
+  list->next->next = nullptr;
 
   delete list->next; // Why we free list->next firstly?
   delete list;
-  list = 0; // Can we put this line before delete line?
+  list = nullptr; // Can we put this line before delete line?
 }
 ```
 
 ## Step 3: Learn how to encapsulate list nodes
 
-Now that you have a feel for list nodes, you should know that such structures are not usually manipulated directly by application programs - not in C++ anyway (although it is common in C programming). Instead, applications normally use objects of a List class, and the class itself is the only part of the program that accesses list nodes.
+Now that you have a feel for list nodes, you should know that such structures are not usually manipulated directly by application programs - not in C++ anyway (although it is common in C programming). Instead, applications normally use objects of a `List` class, and the class itself is the only part of the program that accesses list nodes.
 
-In the rest of this lab, you will help build such a list class. The class definition is stored in `intlist.h` - please study it to know its parts:
+In the rest of this lab, you will build such a list class. The class definition is stored in `intlist.h` - please study it to know its parts:
 
-The public declarations show what a client program can do with an `IntList` object. Notice, however, that the list node structure definition is in the private area. Clients can't directly use or even refer to such nodes, but all that clients should care about are the values stored in these nodes anyway! Also, notice that every list object will have one node pointer that points to the first node in the list or at 0 if the list is empty.
-Now, look at `intlist.cpp`. The functions that you need to implement are marked in that file. Some of the methods of the class are implemented at the bottom of the file - do not change what is done.
+The public declarations show what a client program can do with an `IntList` object. Notice, however, that the list node structure definition is in the `private` area. Clients can't directly use or even refer to such nodes, but all that clients should care about are the values stored in these nodes anyway! Also, notice that every list object will have one node pointer that points to the first node in the list or at `nullptr` if the list is empty. Now, look at `intlist.cpp`. The functions that you need to implement are marked in that file. Some of the methods of the class are implemented at the bottom of the file - do not change what is done.
 
 An application file would create `IntList` objects and use them to solve problems. For this lab, we have two application files, both of which are testing programs - `testlist.cpp` and `testrest.cpp`. First, look `testlist.cpp`. Two `IntList` objects are created; then, numbers read from the command line are appended to one of the lists; and finally, the methods are tested for each list.
 
-You can use the provided `Makefile` to help you complile the program.
+You can use the provided `Makefile` to help you compile the program.
 
 ## Step 4: Implement linked list functions
-
 
 You should be able to run the program now (assuming you compiled it in Step 3) - it requires you to enter a starter list of integers on the command line, which means the program will throw an error if we don't provide the list of input integers when running the program:
 
 ```
--bash-4.2$ ./testlist
+$ ./testlist
 error: need at least one int arg on command line
 usage: ./testlist int [int ...]
 ```
 
-This time, we'll run it properly. The `contains` method is used to checke for three values that ought to be in the list, plus one value that should not appear in the list. Here is a sample run with initial values of 5, 7, 9 and 11:
+This time, we'll run it properly. The `contains` method is used to check for three values that ought to be in the list, plus one value that should not appear in the list. Here is a sample run with initial values of 5, 7, 9 and 11:
 
 ```
-./testlist 5 7 9 11
+$ ./testlist 5 7 9 11
 List 1:
    [5 7 9 11]
    count: 4
@@ -243,18 +236,19 @@ Empty list 2:
    List 2 after insertFirst(3), then insertFirst(1):
    []
 ```
+
 See that `append`, `print` and `count` all work. But the others need to be fixed.
 
-Use an editor (e.g., emacs, vim, or VS Code) to make the following changes to `intlist.cpp` - do not change any of the other files.
+Use an editor (e.g., Emacs, Vim, or VS Code) to make the following changes to `intlist.cpp` - do not change any of the other files.
 
 * Fix the comment at the top to show your name and the date.
 * Implement the `sum` method. See the count method for guidance.
 * Save, and then test your `sum` implementation - compile and execute `testlist` again. Verify `sum` is working before going on.
-* Push your code to github using the `git add .`, `git commit`, and `git push` commands
-* Then implement the `contains` method, save again and test again.
+* Push your code to GitHub using the `git add .`, `git commit`, and `git push` commands.
+* Then, implement the `contains` method, save again, and test again.
 * Continue with the other three functions in the same way: implement and test one at a time. Don't implement the copy constructor, destructor, and assignment operator yet.
 
-Push your code to github often.
+Push your code to GitHub often.
 
 Here are correct results for the same sample data as above:
 
@@ -292,9 +286,10 @@ Run the test program with argument 1 (to test your copy constructor) before impl
 $ ./testrest 1
 Segmentation fault (core dumped)
 ```
+
 Now run the program with the same argument in `gdb` and try to figure out exactly why it crashed.
 
-* Implement the copy constructor in `intlist.cpp`. Compile with `make` and run <code>$ ./testrest 1</code>. Repeat this process until the test passes. However, its not enough to just pass the test. This is because when you are writing programs that work with dynamic data (on the heap), your program can have memory leaks that are not captured by unit tests. To check for leaks, you should run your program in `valgrind` as follows:
+* Implement the copy constructor in `intlist.cpp`. Compile with `make` and run `./testrest 1`. Repeat this process until the test passes. However, its not enough to just pass the test. This is because when you are writing programs that work with dynamic data (on the heap), your program can have memory leaks that are not captured by unit tests. To check for leaks, you should run your program in `valgrind` as follows:
 
 ```
 $ valgrind --leak-check=full ./testrest 1
@@ -317,25 +312,23 @@ PASSED copy constructor tests
 
 The error summary should show 0 errors as shown above. If you have memory leaks, `valgrind` will let you know.
 
+* Implement the destructor, compile and run `./testrest 2`.
 
-* Implement the destructor, compile and run <code>$ ./testrest 2</code>.
 You should see the following message:
 
 ```
 $ ./testrest 2
 Testing destructor, run in valgrind to check for leaks
 ```
-Now run it in `valgrind` to make sure you don't have any memory leaks
+Now run it in `valgrind` to make sure you don't have any memory leaks.
 
-* Finally implement the overloaded assignment operator in `intlist.cpp`. To test it run <code>$ ./testrest 3</code>. If it doesn't crash, run it in `valgrind` to check for memory leaks
+* Finally implement the overloaded assignment operator in `intlist.cpp`. To test it run `./testrest 3`. If it doesn't crash, run it in `valgrind` to check for memory leaks.
 
-## Step 5: Submit intlist.cpp and intlist.h (if you have modified it).
+## Step 5: Submit `intlist.cpp` and `intlist.h` (if you have modified it)
 
-Log into your account on https://www.gradescope.com/ and navigate to our course site. Select this assignment. Then click on the "Submit" button on the bottom right corner to make a submission. You will be given the option of uploading files from your local machine or submitting the code that is in a github repo. Select the second option and select your github repo for this assignment. You should receive 100/100 for a completely correct program.
-
+Log into your account on <https://www.gradescope.com/> and navigate to our course site. Select this assignment. Then, click on the "Submit" button on the bottom right corner to make a submission. You will be given the option of uploading files from your local machine or submitting the code that is in a GitHub repo. Select the second option and select your GitHub repo for this assignment. You should receive 100/100 for a completely correct program.
 
 Do beware that all parts must be working to earn any points at all from the Gradescope system.
-
 
 ## Evaluation and Grading
 
