@@ -4,44 +4,46 @@ ready: true
 desc: "Application of Data Structures to a Movie Dataset"
 assigned: 2024-11-11 9:00:00.00-8
 due: 2024-11-20 23:59:59.00-8
-published: false
 ---
 
-# Collaboration policy
-This assignment may be completed in pairs using the pair-programming style of developing code described in previous assignments.
+## Collaboration policy
 
-# Introduction
+This assignment may be completed solo or in pairs using the pair-programming style of developing code described in previous assignments.
 
-Please read the entire writeup before beginning the lab. In particular, take a look at part 3a to understand your requirements for a full score before attempting to implement a solution. You are graded on the running time efficiency of your solution.
+## Introduction
+
+Please read the entire write-up before beginning the lab. In particular, take a look at part 3a to understand your requirements for a full score before attempting to implement a solution. You are graded on the running time efficiency of your solution.
 
 In this assignment, you will
+
 * Use a container data structure from the C++ Standard Template Library (STL) where possible and/or write your own data structure to store and query data.
 * Analyze the time and space complexity of your algorithms.
 
-# Goal of this assignment
+## Goals
 
-* Use data structures from the C++ STL (STL) to solve a problem on a large, real-world dataset efficiently.
-* Analyze the complexity of your algorithms using Big-O notation
-* Explore the tradeoffs between time and space complexity.
+* Use data structures from the C++ STL to solve a problem on a large, real-world dataset efficiently.
+* Analyze the complexity of your algorithms using Big-O notation.
+* Explore the trade-offs between time and space complexity.
 * Organize your project's code independently (not just filling in a template).
 
 *Note: The goals above are very important in the industry and interviews!*
 
-# Getting Started
+## Getting started
 
-## Starter code
+### Starter code
 
-### GitHub repository
+#### GitHub repository
 
-Refer to lab01 for instructions on how to set up a GitHub repository and
-pull the starter code for this lab.
-Obtain the starter code from this repo: <https://github.com/ucsb-cs24-w24/STARTER-lab06>
+Refer to lab01 for instructions on how to set up a GitHub repository and pull the starter code for this lab. Obtain the starter code from this repo:
 
-### Contents
-* `main.cpp`: driver code to read in movies from input files
-* `movies.h` and `movies.cpp`: empty files
-* `utilities.h` and `utilities.cpp`: empty files
-* `Makefile`: this file generates the executable `runMovies`, and you are **NOT ALLOWED** to revise it
+* <https://github.com/{{site.class_org.name}}/STARTER-{{page.num}}>
+
+#### Contents
+
+* `main.cpp`: Driver code to read in movies from input files
+* `movies.h` and `movies.cpp`: Empty files
+* `utilities.h` and `utilities.cpp`: Empty files
+* `Makefile`: This file generates the executable `runMovies`, and you are **NOT ALLOWED** to revise it
 * `input_20_ordered.csv`
 * `input_20_random.csv`
 * `input_100_ordered.csv`
@@ -55,11 +57,14 @@ Obtain the starter code from this repo: <https://github.com/ucsb-cs24-w24/STARTE
 * `prefix_large.txt`
 
 You are given eight datasets in CSV files. Each CSV file:
+
 * has either 20, 100, 1000, 76920 entries
 * is either ordered in alphabetical order of movie name or ordered randomly
 
 **Example of alphabetical order**
-Below is a list of movie names  and their ratings, ordered alphabetically by movie name
+
+Below is a list of movie names and their ratings, ordered alphabetically by movie name
+
 ```
 ace ventura: when nature calls,6.1
 balto,7.1
@@ -84,6 +89,7 @@ waiting to exhale,6.1
 ```
 
 **Example of random order**
+
 ```
 toy story,7.7
 jumanji,6.9
@@ -108,18 +114,22 @@ money train,5.4
 ```
 
 ## Files to complete
-* `movies.cpp, movies.h`: these files should contain any abstractions that you need to define.
+
+* `movies.cpp, movies.h`: These files should contain any abstractions that you need to define.
 	* We strongly discourage implementing any data structure available in the C++ STL from scratch. However, you are encouraged to think creatively about improving the running time efficiency of your solution and implement your own data structure if those provided in the STL are insufficient to meet your needs.
-* `main.cpp`: this file should read in the movies from input files and produce the expected output.
-* (Optional) `utilities.h` and `utilities.cpp`: you can place other helper functions, structs, and classes in these files.
+* `main.cpp`: This file should read in the movies from input files and produce the expected output.
+* (Optional) `utilities.h` and `utilities.cpp`: You can place other helper functions, structs, and classes in these files.
 
 ## Problem statement
+
 This assignment has three parts. You should **separate your algorithm for part 1 from your algorithm for part 2** because in part 3, you need to analyze the running time complexity of your solution to **part 2 only**.
+
 * In part 1, your task is to print all movie names and ratings (from the CSV file) in alphabetical order of movie name.
 * In part 2, you are given `m` prefixes of movie names. Your task is to find the movies whose names start with each prefix and find the highest-rated movie for each prefix.
 * In part 3, you will analyze the time and space complexity of your solution for part 2.
 
 ## Command-line arguments
+
 ```
 ./runMovies movieFilename prefixFilename
 ```
@@ -130,14 +140,18 @@ This assignment has three parts. You should **separate your algorithm for part 1
     * Prefixes may include whitespace, see `prefix_medium.txt` for examples. Each line in the file corresponds to exactly one prefix.
 
 
-# Part 1: Print all movie names and ratings
+## Part 1: Print all movie names and ratings
+
 Your program should print out all the movies in **alphabetical order of movie name**. You may use **only one data structure** of your choice to store the data from the CSV file. When testing this part, do not include the prefix file as a command-line argument!
 
 **Example with no prefixes**
+
 ```
 ./runMovies input_20_random.csv
 ```
+
 This should produce the output
+
 ```
 ace ventura: when nature calls, 6.1
 balto, 7.1
@@ -162,30 +176,38 @@ waiting to exhale, 6.1
 ```
 
 ## Part 2: Find movies based on prefixes
-In Part 2, the goal is to search for movies based on their prefixes. This involves finding movies whose titles begin with a particular set of letters or words. The search results will be limited to movies that match the specified prefix criteria.
 
-In this case, your program will take an extra command-line argument that specifies the name of a second file containing one or more prefixes.
-Then for each prefix, your program should:
+In part 2, the goal is to search for movies based on their prefixes. This involves finding movies whose titles begin with a particular set of letters or words. The search results will be limited to movies that match the specified prefix criteria.
+
+In this case, your program will take an extra command-line argument that specifies the name of a second file containing one or more prefixes. Then for each prefix, your program should:
+
 * Find the movies whose names start with that prefix.
 * Find the highest-rated movie for that prefix.
 
 You may use additional data structures from the C++ STL to help you solve this part of the assignment, or you may write your own structure.
 
 ### Part 2a: All movies starting with a prefix
+
 First, for each prefix, your program should print out all the movies whose names start with that prefix in **decreasing order of rating**. If multiple movies have the same rating, print them in alphabetical order of movie name. For example, print `the american president, 6.5` before `the confessional, 6.5`. If no movie names start with that prefix, then print
+
 ```
 No movies found with prefix <prefix_value>
 ```
 
 ### Part 2b: Highest-rated movie for a prefix
+
 Second, for each prefix, your program should print the **highest rated** movie whose name starts with that prefix. If there is a tie for the highest-rated movie, then use the movie whose name comes first in alphabetical order.
 
 ### Examples
+
 **Example with three prefixes and multiple movies with the same rating**
+
 ```
 ./runMovies input_100_random.csv prefix_small.txt
 ```
+
 This should produce the following output:
+
 ```
 toy story, 7.7
 to die for, 6.7
@@ -215,11 +237,15 @@ Best movie with prefix w is: wings of courage with rating 6.8
 ```
 
 **Another example of multiple movies with the same rating**
-*let prefix.txt be a file that contains the prefix "be"*
+
+*Let prefix.txt be a file that contains the prefix "be"*
+
 ```
 ./runMovies input_1000_random.csv prefix.txt
 ```
+
 should produce the output:
+
 ```
 before sunrise, 7.7
 before the rain, 7.7
@@ -238,11 +264,15 @@ Best movie with prefix be is: before sunrise with rating 7.7
 ```
 
 **Example with no movies for a given prefix**
-*Let prefix.txt be a file that contains the prefixes: "t" and "xyz"
+
+*Let prefix.txt be a file that contains the prefixes: "t" and "xyz"*
+
 ```
 ./runMovies input_100_random.csv prefix.txt
 ```
+
 should produce the output
+
 ```
 the usual suspects, 8.1
 toy story, 7.7
@@ -268,8 +298,10 @@ Best movie with prefix t is: the usual suspects with rating 8.1
 ```
 
 Note that:
+
 1. Best movies with a certain prefix should be printed at the **END** of the output.
 2. There will **NOT** be empty lines after printing out "No movies found with prefix <prefix_value>".
+
 ```
 No movies found with prefix xyz
     <--- NO LINE HERE
@@ -277,10 +309,13 @@ Best movie with prefix t is: the usual suspects with rating 8.1
 ```
 
 **Example with prefixes not in alphabetical order**
-*Let prefix.txt be a file that contains the prefixes: “two”, “xyz”, “xxx”, and “a”.
+
+*Let prefix.txt be a file that contains the prefixes: “two”, “xyz”, “xxx”, and “a”*
+
 ```
 ./runMovies input_100_random.csv prefix.txt
 ```
+
 should produce the output
 
 ```
@@ -302,7 +337,9 @@ Best movie with prefix a is: a midwinter's tale with rating 7.5
 Note that the output will print results according to the order of the input prefix file, not the alphabetical order.
 
 ## Part 3: Analyze the time and space complexity of your algorithm from part 2
+
 Assume that
+
 * there are `n` movies in the dataset.
 * there are `m` prefixes specified in a given run of your program.
 * at most `k` movies begin with each prefix.
@@ -310,7 +347,9 @@ Assume that
 
 
 ### Part 3a: Analyze time complexity
+
 Analyze the worst-case Big-O time complexity of your algorithm from part 2 of the assignment. You may assume that
+
 * all `n` movies are already stored in your data structure.
 * all `m` prefixes are already stored in an array.
 
@@ -322,26 +361,28 @@ First, provide the time complexity analysis as a **commented block** right after
 
 Second, report on **specific running times achieved by your solution** on *each* random input file: `input_20_random.csv`, `input_100_random.csv`, `input_1000_random.csv`, and `input_76920_random.csv`, using `prefix_large.txt` as the second parameter.
 
-. Write down the number of milliseconds it takes for your solution to run on each input. Only report on the randomized datasets.
+Write down the number of milliseconds it takes for your solution to run on each input. Only report on the randomized datasets.
 
 * Be sure to check that the trend in your proposed time complexity from (1) somewhat matches with trends in your runtimes from (2)
 
 You will be graded for the efficiency of your algorithms but also the clarity and correctness of your analysis.
 
 Here are runtime plots of three different types of solutions. These runtimes were gathered on the csil machines on the input files `input_76920_random.csv`, recording the running time to compute the result for the first `m` prefixes in `prefix_large.txt` to get each data point in the plot. If you want to get a proper runtime comparison, please run your code on csil first and submit it to the Gradescope. And the leaderboard will show the efficiency for grading.
-* **Full credit will be given to solutions with an efficiency similar to `Mystery Implementation #4`**
 
+* **Full credit will be given to solutions with an efficiency similar to `Mystery Implementation #4`**
 * The students who achieve the top 5 runtimes will receive **extra credit**. And we will use Gradescope leaderboard to decide the top 5 runtime.
 
 <img src="instruction_perf.jpg" alt="Part2" style="display:block; margin: 5px 10px 10px 10px;">
 
-
 ### Part 3b: Analyze space complexity
+
 Analyze the worst case Big-O space complexity of your algorithm from part 2 of the assignment. You may assume that
+
 * all `n` movies are already stored in your data structure.
 * all `m` prefixes are already stored in an array.
 
 You must provide the space complexity analysis as a **commented block** under your time complexity analysis. Note that
+
 * select the parameters that could affect the space complexity of your algorithm among `n`, `m`, `k`, and `l`.
 * express your final Big-O space complexity in terms of the relevant parameters.
 * your final answer will depend on your data structure and algorithm choices.
@@ -349,10 +390,13 @@ You must provide the space complexity analysis as a **commented block** under yo
 You will be graded for the efficiency of your algorithms but also the clarity and correctness of your analysis. However, we are not giving you a target Big-O space complexity.
 
 ### Part 3c: Explore tradeoffs between time/space complexity
+
 Briefly state how you designed your algorithm from part 2 of the assignment for the task at hand. More specifically, answer this question:
+
 * Did you design your algorithm for a low time complexity, a low space complexity, or both? What were your target complexities?
 
 Based on your answer to the question above, answer one of the following:
+
 1. If you designed your algorithm for a low time complexity,
     * Were you able to achieve a low space complexity as well?
     * Why or why not?
@@ -369,6 +413,7 @@ You must provide these answers as a **commented block** under your space complex
 You will be graded for the clarity and thoughtfulness of your analysis.
 
 ## Requirements
+
 For this programming assignment, you will have a lot of flexibility on your implementation (which just means we won't be providing a code framework for you to fill in). However, there are a few requirements that you need to keep in mind as you think about your solution:
 
 * You must make appropriate use of data structures from the STL where possible, and implement your own only when needed. For example, if you need a bst, just use the implementation provided in the STL instead of implementing it from scratch.
