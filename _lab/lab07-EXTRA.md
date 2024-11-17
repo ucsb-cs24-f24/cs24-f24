@@ -2,121 +2,83 @@
 num: lab07-tutorial
 ready: true
 desc: "A Gentle Introduction to Neural Networks"
-published: false
 ---
 
 {% include mathjax.html %}
 
+This section provides a very brief introductory explanation of neural networks.
 
-### A Gentle Introduction to Neural Networks
+## Recap on graphs
 
-This section will serve as a semi-thorough introductory explanation of neural networks for the brave and curious.
+A graph is a structure consisting of nodes and edges (connections between nodes). A graph can represent many different situations with varying constraints, so graphs are powerful. Depending on the problem setting, we can choose an appropriate graph type and develop an algorithm on the chosen model.
 
-You have previously learned about *specific types* of graphs liked linked lists and binary trees. The graph is the generic structure on which those data structures are realized: a collection of nodes and connections between them. All binary trees, for example, are graphs, but not all graphs are binary trees.
+For example, a binary tree is a type of graph with the following conditions:
 
-We can understand this better by seeing which limitations the binary tree puts on the graph structure:
-- There is a single "root" node which has no incoming connections.
-- Every node has at most two outgoing connections, collectively called "children"
-- Every node, except the root, has exactly one incoming connection, called the "parent"
+- There is a single “root” node that has no incoming connections.
+- Every node has at most two outgoing connections, collectively called “children.”
+- Every node, except the root, has exactly one incoming connection, called the “parent.”
 - A node may never have an outgoing connection to an ancestor or cousin.
 
-###### The power of a Graph
-Now, let's go back to talking about the generic graph structure.
+Suppose we want to formulate a problem of finding the shortest path from one city to another. As illustrated in the following graph, we can represent each city as a node and a highway connecting two cities as a directed edge with a weight representing its length.
 
 ![NeuralNetwork Example]({{site.baseurl}}/lab/lab07/assets/generic_weighted_directed_graph.svg)
 
-Take a moment to study this image, and understand the components of the structure. A good idea would be to think about how this generic graph is represented in code with an adjacency list.
+## Introduction to machine learning and neural networks
 
-Graphs are powerful, in that they can represent and model many different kinds of situations and problems. Suppose we had the problem of finding the shortest path from one city to another. So, we might choose to let this graph represent a collection of cities (nodes) which connect to other nodes through connections (highways). Each connection might be "weighted" which could indicate the length of the highway. Finally, the directedness could indicate the valid route of traversal on the connection; for example, it is invalid to travel from node 5 to node 2, but it is valid to travel from node 2 to node 5. We could then run algorithms on this graph to find interesting information, like the shortest distance from one city to another and solve our problem.
+A machine learning model learns from training data to make a prediction about unseen test data. In other words, a machine learning model is a function that maps an input $x$ to an output $y$. Various types of machine learning models exist, and which machine learning model to use is usually chosen depending on a target task (or an availability of data).
 
-Notice that our interpretation of the graph directly stems from our original problem of wanting to find the shortest path. In the context of this problem, we need to model the environment in this way in order to solve it. It wouldn't work if we interpreted weighted connections as the amount of traffic on the road, since that doesn't give us a complete picture of how long it will take to traverse it.
+In this lab, we focus on an artificial neural network, a specific class of machine learning models inspired by biological neural networks in animal brains, and its underlying graph structure. A neural network consists of nodes (similar to neurons in the brain) and edges (similar to synapses in the brain). Therefore, a neural network can also be represented as a graph. There are different types of neural networks. In this lab, we focus on a fully connected feedforward neural network, but we will just call it a neural network for brevity.
 
-###### Modeling the problem of Machine Learning
+### Structure of a feed forward neural network
 
-The goal of any machine learning model is to fit a solution to a collection of data. In other words: we use pre-existing data in order to make predictions for new, unseen, data. There are a variety of algorithms and model types that work well for particular problems, but this lab focuses on neural networks because of its underlying graph structure. Usually, we are concerned with writing a program ```P``` which takes input ```x``` and outputs ```y```. In machine learning, we instead are concerned with writing algorithm ```A``` which takes as input ```x``` and ```y```, and outputs program ```P```. This program ```P``` can then be used to take new instances of input ```x``` and make predictions as output ```y```.
+Here are the specifications of the graph structure in a neural network:
 
-With this problem in mind, we can think of a way to interpret a graph structure to achieve what we want. One structure that uses this "learning" model is the human brain. We as humans take as input many experiences, and we learn from these experiences and adapt to changes. So, we can choose to loosely interpret our graph as a brain! Here, we choose nodes to represent neurons, and connections between them to represent synapses.
+- A neural network consists of sequential “layers.” The first layer, the last layer, and the other intermediate layers are called “input” layer, “output” layer, and “hidden” layers, respectively.
+- Each layer consists of a disjoint set of nodes.
+- For every node pair between two consecutive layers, there is an edge with a direction from the predecessor layer to the successor layer and a “weight.” There are no other connections.
+- Every node, except for nodes in the input layer, contains a “bias” term.
+- Every node can be activated with an “activation function.” Typically, all nodes in a layer share the same activation function.
 
-###### Understanding the structure of a Vanilla Fully Connected Feed Forward Neural Network
+Following is an example diagram of a neural network which has three layers, two input nodes, and one output node:
 
-Just as we did before with the Binary Tree structure, let's outline the specific limitations (and indeed, upgrades) the neural network puts on its underlying graph structure (skip if you already read this in the original writeup):
-
-- The Neural Network consists of "layers" which collectively partition the graph's nodes. Every node is apart of a layer, and layers may not share the same node.
-- There is at least one input layer and one output layer. Every other layer is a "hidden" layer.
-- The layers are ordered such that the input layer is first, and the output layer is last, each hidden layer specifically has a predecessor layer and a successor layer.
-- Every node in one layer has an outgoing connection to every node in the successor layer. A node may never have an outgoing connection to a layer that is not in the successor layer.
-- Every node can be "activated" with an activation function, which transforms the value held within the node.
-- Nodes in the input layer may not have incoming connections. Nodes in the output layer may not have outgoing connections.
-- Every connection is weighted.
-- Every node, except for nodes in the input layer contain a term called the "bias".
-- Typically, all nodes of a layer share the same activation function.
-
-Here is a diagram which outlines this structure:
 ![NeuralNetwork Example]({{site.baseurl}}/lab/lab07/assets/generic_neural_net.svg)
 
-##### Making Predictions
-For a neural network, the collections of weights and biases serves as the model, or as explained earlier - the mechanism in which we make a prediction. We insert the input into each node of the input layer. This diagram takes in two inputs, since there are two nodes in the input layer, each node gets a different input. The value is then transformed by each weight as it "flows" to the next layer. Once it reaches the next layer, it again gets transformed by the bias and activation function - in that order. After this, the same process happens as it flows to the next layer. In this example, it flows until it has been transformed by the output layer, which leaves the value in a state we interpret as a prediction.
+### Making predictions
 
-Lets look at a specific example which shows how exactly the values are being transformed.
+Each node’s value is calculated by the weighted sum of the values of the previous layer nodes plus a bias followed by an activation. To calculate a node’s value, it requires the value of the preceding nodes. Therefore, we should perform the computation in the correct order defined by the graph structure of the neural network. We can compute in the order of layers, from the input layer to the output layer.
 
-1. Assume the node with id 1 contains the input value: $x_1$ and the node with id 2 contains the input value: $x_2$.
-2. To compute the value for node 3: $h_1$, we first accumulate the weighted sum:
-$$h_1 = x_1w_1 + x_2w_4$$
-3. Next, we add the bias term:
-$$h_1 = x_1w_1 + x_2w_4 + b_1$$
-4. Finally, activate the node with the activation function for its layer: $ReLU$
+Let’s look at how we compute node values in the example neural network above. Assume the node 1 contains the input value ($x_1$​) and the node 2 contains the input value ($x_2$​). Using the input values, we can compute the node values in the hidden layer: $h_1 = \operatorname{ReLU}(x_1w_1 + x_2w_4 + b_1)$, $h_2 = \operatorname{ReLU}(x_1w_2 + x_2w_5 + b_2)$, and $h_3 = \operatorname{ReLU}(x_1w_3 + x_2w_6 + b_3)$. And then, with those values, we can compute the output node value: $y_1 = \operatorname{sigmoid}(h_1w_7 + h_2w_8 + h_3w_9 + b_4)$.
 
-$$h_1 = ReLU(x_1w_1 + x_2w_4 + b_1)$$
+Note that weights and biases determine the prediction. Model parameters are the set of all weights and biases (in the example, $\{w_1, \ldots, w_9, b_1, \ldots, b_4\}$) that need to be learned. We can update model parameters using a training dataset, a set of input-output pairs $(x, y)$ (in the example, $x = (x_1, x_2)$ and $y = y_1$), from some initialization based on gradient descent method in a way that reduces the error between predictions and ground truths (will be described later). After that, we can predict the output $y$ for a new input $x$ using the trained model parameters.
 
-Using these steps, we can compute the value for every other node, including the output node, which will be our prediction.
-- $h_2 = ReLU(x_1w_2 + x_2w_5 + b_2)$
-- $h_3 = ReLU(x_1w_3 + x_2w_6 + b_3)$
-- $y_1 = sigmoid(v_3w_7 + v_4w_8 + v_5w_9 + b_4)$
+### Training the neural network
 
-The important thing to realize is that these weights and biases are what control the prediction.
+When a neural network makes a prediction, we can measure “how bad” of a prediction by comparing it with a ground truth using a *loss function*. We train a model by optimizing it to minimize this loss over the training data. To do so, we calculate a gradient of the loss function with respect to the model parameters and update model parameters in the negative direction of each gradient. This is called *gradient descent*. Usually, since the size of the training dataset is large, we repeat this gradient descent on a small sample subset of the training dataset (called a mini-batch). In this case, it is called stochastic gradient descent.
 
-##### Training the Neural Network to make good predictions
-Usually, the neural network starts off with random weights and zeroed biases. You can intuitively see how random weights and zeroed biases cause random predictions.
+Based on the chain rule (we will skip the exact formulation here), the gradient of weights and biases should be calculated in the backward order starting from the output layer. Therefore, we call the process of gradient computation as *backpropagation*. Here is a nifty little GIF that depicts these processes. You can see how the input flows through the graph, how the nodes are activated, and how the error gets propagated backward.
 
-So, neural networks employ a combination of two concepts:
-- Gradient Descent
-- Back Propagation
-
-When a neural network makes a prediction, there is a sense of "how bad" of a prediction it was. This measure of quality can be found with a "Loss" function. In otherwords, the Loss function gives the neural network penalties and therefore incentive to improve.
-
-###### Gradient Descent
-Once the Loss function outputs a penalty, gradient descent tells us how to update every single weight and bias in order to make a better prediction. Note that it gives us updates to these weights and biases to make a **better** prediction, not the **best** prediction. Because of this, we usually make multiple training passes to keep getting a *better* set of weights and biases until we reach some accuracy threshold on a test dataset (unseen data). To be specific, think of it as a black box that calculates a ```delta``` term for each weight and bias, where ```delta``` is the amount to be subtracted from the original weight or bias value.
-
-###### Back Propagation
-When gradient descent calculates the change in a particular weight or bias, this change depends on changes made to nodes that come later in the neural network.
-
-The "error", in other words, gets propagated back through the neural network.
-In general, for any ```delta``` $d$, $d$ is in the form $f_1f_2$, where $f_1$ is a factor in the ```delta``` for weights and biases in the previous layer.
-
-
-
-Here is a nifty little gif that depicts these processes. You can see how the input flows through the graph, and how the nodes are activated, as well as how the error gets propagated backward.
 ![Prediction and Backprop]({{site.baseurl}}/lab/lab07/assets/backprop.gif)
 
-### External Resources
+## External resources
 
-###### BFS and DFS
-- GeeksForGeeks BFS: <https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/>
-- GeeksForGeeks DFS: <https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/>
+### Gradient descent
 
-###### Gradient Descent
 You are not required to understand the math behind gradient descent, but if you are interested, this is a great resource:
+
 - StatQuest - Gradient Descent: <https://www.youtube.com/watch?v=sDv4f4s2SB8>
 
-###### Neural Networks
-Here are some great resources to help you out. I would say that statquest has great videos to understand the implementation of neural network structures, whereas 3blue1brown is more conceptual based:
+### Neural networks
+
+Here are some great resources to help you out. I would say that StatQuest has great videos to understand the implementation of neural network structures, whereas 3Blue1Brown is more conceptual based:
+
 - StatQuest - Neural Network Basics (great for understanding the prediction algorithm): <https://youtu.be/CqOfi41LfDw?si=8waS2U01uMWcpH2i>
 - StatQuest - Back Propagation (great for understanding the contribute algorithm): <https://youtu.be/IN2XmBhILt4?si=bnDft-3T4DQ2iO9X>
 - 3Blue1Brown - <https://youtu.be/aircAruvnKk?si=KZt2AsbD7URc58-L>
 
+## Credits
 
+This assignment was conceived and created by a UCSB CS ULA, Zackary Glazewski, in consultation with Diba Mirza for CS 24. Thanks to the UCSB CS24 teaching staff for reviewing and providing feedback: Torin Schlunk, Mehak Dhaliwal, Nawel Alioua, Joseph Ng, Shinda Huang, Xinlei Feng, Yaoyi Bai, Ally Chu, and Sanjana Shankar.
 
-### Credits
-This assignment was conceived and created by UCSB CS ULA, Zackary Glazewski in consultation with Diba Mirza for CS 24. Thanks to the UCSB CS24 teaching staff for reviewing and providing feedback: Torin Schlunk, Mehak Dhaliwal, Nawel Alioua, Joseph Ng, Shinda Huang, Xinlei Feng, Yaoyi Bai, Ally Chu, and Sanjana Shankar.
+Revised by TA Gyuwan Kim and reviewed by ULAs Siddhi Mundhra, Dennis Kim, and Wong Zhao for the Fall 2024 quarter.
 
 [CC BY-NC-SA 2.0](https://creativecommons.org/licenses/by-nc-sa/2.0/), Zackary Glazewski and Diba Mirza, Feb 2024.
